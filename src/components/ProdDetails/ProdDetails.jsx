@@ -46,7 +46,7 @@ const ProdDetails = () => {
       buyer_contactInfo: contactInfo,
       status: "pending",
     };
-    fetch("http://localhost:3333/products/bids", {
+    fetch("https://smart-deals-server-seven-gamma.vercel.app/products/bids", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,14 +63,15 @@ const ProdDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3333/bids/${_id}`)
+    fetch(`https://smart-deals-server-seven-gamma.vercel.app/bids/${_id}`)
       .then((res) => {
-        return res.json()})
+        return res.json();
+      })
       .then((data) => {
         setBids(data);
       });
   }, [_id]);
-  
+
   return (
     <div className="p-6 bg-white border border-gray-300 rounded-2xl w-full max-w-6xl mx-auto my-11">
       <div className="flex gap-10">

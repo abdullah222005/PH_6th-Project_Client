@@ -49,23 +49,22 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if(currentUser){
-        const loggedUser = {email: currentUser.email}
-        fetch('http://localhost:3333/getToken',{
+      if (currentUser) {
+        const loggedUser = { email: currentUser.email };
+        fetch("https://smart-deals-server-seven-gamma.vercel.app/getToken", {
           method: "POST",
           headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
           },
-          body: JSON.stringify(loggedUser)
+          body: JSON.stringify(loggedUser),
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log('after getting token', data.token);
-          localStorage.setItem('token', data.token);          
-        })
-      }
-      else{
-        localStorage.removeItem('token')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("after getting token", data.token);
+            localStorage.setItem("token", data.token);
+          });
+      } else {
+        localStorage.removeItem("token");
       }
       setLoading(false);
     });

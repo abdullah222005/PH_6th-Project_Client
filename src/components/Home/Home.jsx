@@ -1,7 +1,7 @@
 import LatestProducts from "../LatestProducts/LatestProducts";
 import Banner from "../Banner/Banner";
 const LatestProductsPromise = fetch(
-  "http://localhost:3333/latest-products"
+  "https://smart-deals-server-seven-gamma.vercel.app/latest-products"
 ).then((res) => res.json());
 
 const Home = () => {

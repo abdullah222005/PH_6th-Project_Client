@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import { use, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
-import AuthContext from '../../context/AuthContext';
-import { auth } from '../../firebase/firebase.config';
+import AuthContext from "../../context/AuthContext";
+import { auth } from "../../firebase/firebase.config";
 
 const LoginPage = () => {
-
   const { signInUser, forgotPass, signInGoogle } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +21,7 @@ const LoginPage = () => {
     signInUser(email, password)
       .then((result) => {
         // navigate(`${location.state ? location.state : "/"}`);
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
         setError(error?.message);
@@ -36,20 +35,20 @@ const LoginPage = () => {
         const newUser = {
           name: result.user.displayName,
           email: result.user.email,
-          image: result.user.photoURL
+          image: result.user.photoURL,
         };
         //create user in db
-        fetch("http://localhost:3333/users", {
+        fetch("https://smart-deals-server-seven-gamma.vercel.app/users", {
           method: "POST",
-          headers:{
-            'content-type': 'application/json'
+          headers: {
+            "content-type": "application/json",
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         })
-        .then(res =>res.json())
-        .then(data =>{
-          console.log('data after user save', data);
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
       })
       .catch((error) => setError(error.message));
   };
@@ -64,8 +63,8 @@ const LoginPage = () => {
         .catch((error) => {
           setError(error?.message);
         });
-    }else{
-      return setError("Must need an email")
+    } else {
+      return setError("Must need an email");
     }
   };
   return (
@@ -106,7 +105,10 @@ const LoginPage = () => {
           </button>
         </form>
         <h1 className="font-semibold text-lg text-center">Or,</h1>
-        <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          onClick={handleGoogleLogin}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

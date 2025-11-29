@@ -7,11 +7,11 @@ const MyProducts = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3333/bids?email=${user.email}`)
+      fetch(
+        `https://smart-deals-server-seven-gamma.vercel.app/bids?email=${user.email}`
+      )
         .then((res) => res.json())
-        .then((data) => {
-
-        });
+        .then((data) => {});
     }
   }, [user?.email]);
 
