@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui"{
+    themes: light --default;
+
+}
+
+a.active{
+  color: #9810FA;
+  font-weight: 700;
+  border-bottom: 2px solid #9810FA;
+}
